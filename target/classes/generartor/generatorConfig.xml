@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <!--导入属性配置-->
+    <properties resource="jdbc.properties"/>
+    <!--
+            defaultModelType="flat 每张表只生成一个实例
+            "`"  使用的数据库为MySql时前后分隔符
+    -->
+    <context id="MySqlContext" targetRuntime="MyBatis3Simple" defaultModelType="flat">
+        <property name="beginningDelimiter" value="`"/>
+        <property name="endingDelimiter" value="`"/>
+        <!--
+            配置生成数据库注释信息
+        -->
+        <commentGenerator>
+            <property name="SupressDate" value="true"/>
+            <property name="addRemarkComments" value="true"/>
+        </commentGenerator>
+        <!--
+            要连接的数据源信息
+        -->
+        <jdbcConnection driverClass="${jdbc.driverClassName}"
+                        connectionURL="${jdbc.url}"
+                        userId="${jdbc.username}"
+                        password="${jdbc.password}"/>
+        <!--
+            配置生成的包名
+        -->
+        <javaModelGenerator targetPackage="test.model" targetProject="src\main\java">
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+        <!--
+            配置Mapper.xml文件生成位置
+        -->
+        <sqlMapGenerator targetPackage="test.xml" targetProject="src\main\resources"/>
+        <!--
+            配置接口类生成位置,
+            type="XMLMAPPER" 接口和XML分离
+        -->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="test.dao" targetProject="src\main\java"/>
+        <!--
+            匹配所有的表
+        -->
+        <table tableName="%">
+            <generatedKey column="id" sqlStatement="MySql"/>
+        </table>
+    </context>
+
+
+</generatorConfiguration>
