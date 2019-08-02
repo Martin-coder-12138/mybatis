@@ -52,7 +52,6 @@ public interface SysUserMapper {
     SysUser selectByidOrUserName(SysUser sysUser);
 
     List<SysUser> selectByidList(Map<String,List<Long>> idList);
-
     /**
      * 批量添加
      * @param sysUserList
@@ -60,6 +59,10 @@ public interface SysUserMapper {
      */
     int insertList(List<SysUser> sysUserList);
 
+    /**
+     *
+     * @return
+     */
     List<SysUser> selectAllUserAndRoles();
 
 }
