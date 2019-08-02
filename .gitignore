@@ -2,3 +2,5 @@
 /.idea/
 !/mybatis.iml
 /target/
+src/main/java/com/itheima/service/
+src/main/java/com/itheima/web/
